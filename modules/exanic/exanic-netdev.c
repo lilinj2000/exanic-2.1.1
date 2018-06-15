@@ -1010,7 +1010,7 @@ static struct net_device_ops exanic_ndos = {
     .ndo_start_xmit         = exanic_netdev_xmit,
     .ndo_set_rx_mode        = exanic_netdev_set_rx_mode,
     .ndo_set_mac_address    = exanic_netdev_set_mac_addr,
-    .ndo_change_mtu         = exanic_netdev_change_mtu,
+    .ndo_change_mtu_rh74    = exanic_netdev_change_mtu,
     .ndo_do_ioctl           = exanic_netdev_ioctl,
 };
 

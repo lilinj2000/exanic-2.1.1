@@ -20,6 +20,11 @@
 #define GENLMSG_DEFAULT_SIZE (NLMSG_DEFAULT_SIZE - GENL_HDRLEN)
 #endif
 
+#ifndef GENL_ID_GENERATE
+#define GENL_ID_GENERATE 0
+#endif
+
+
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 31)
 static int exasock_genl_register_family(struct genl_family *family,
                                         struct genl_ops *ops, int size)
@@ -49,7 +54,7 @@ static int exasock_genl_register_family(struct genl_family *family,
 #elif (LINUX_VERSION_CODE < KERNEL_VERSION(3, 13, 0)) && \
        !defined(genl_register_family_with_ops)
     #define exasock_genl_register_family(family, ops, size) \
-        genl_register_family_with_ops(family, ops, size)
+        genl_register_family(family)
 #else
     #define exasock_genl_register_family(family, ops, size) \
         genl_register_family_with_ops(family, ops)
